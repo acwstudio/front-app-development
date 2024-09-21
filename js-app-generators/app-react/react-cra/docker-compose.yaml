@@ -1,0 +1,15 @@
+version: '3'
+services:
+  client:
+    stdin_open: true
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+#    image: node-cra
+    container_name: react-cra
+    restart: unless-stopped
+    ports:
+      - "5473:3000"
+    volumes:
+      - "/app/node_modules"
+      - "./:/app"

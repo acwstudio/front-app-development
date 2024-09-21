@@ -1,0 +1,20 @@
+services:
+  client:
+    stdin_open: true
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    container_name: react-vite
+    restart: unless-stopped
+    ports:
+      - "5471:5471"
+    volumes:
+      - "react_vite:/app/node_modules"
+      - "./:/app"
+    command: >
+      sh -c "cp -rfu /cache/node_modules/. /app/node_modules/  
+      && npm run dev"
+volumes:
+  react_vite:
+    driver: local
+    name: react_vite

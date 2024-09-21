@@ -1,0 +1,21 @@
+# we will use node:alpine docker image
+FROM node:18-alpine
+
+# Create and define the node_modules's cache directory.
+WORKDIR /cache
+
+# copy package.json to work directory, so that we install npm dependencies
+COPY package.json /cache
+
+# install npm dependencies
+RUN npm install --silent
+
+# set /app as work directory
+WORKDIR /app
+#ENV PATH /app/node_modules/.bin:$PATH
+
+# copy your project files to work directory
+COPY . /app
+
+# run your app
+#CMD ["npm", "run", "dev"]

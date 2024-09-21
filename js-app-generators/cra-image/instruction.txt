@@ -1,0 +1,10 @@
+# building image
+docker build . -t front-cli
+
+# how to use the image for generation react app scaffold
+cd /place/for/your/react-app
+docker run --rm -v "$(pwd)":/app --user  "$(id -u)":"$(id -g)" react-cli create-react-app my-react-app
+
+# resources
+https://gist.github.com/przbadu/4a62a5fc5f117cda1ed5dc5409bd4ac1
+https://gist.github.com/przbadu/929fc2b0d5d4cd78a5efe76d37f891b6
