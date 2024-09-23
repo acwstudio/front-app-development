@@ -5,10 +5,10 @@ services:
     build:
       context: .
       dockerfile: Dockerfile.dev
-    container_name: react-vite-04
+    container_name: react-vite-05
     restart: unless-stopped
     ports:
-      - "5472:5472"
+      - "5473:5473"
     volumes:
 #      - "react_vite:/app/node_modules"
       - "./:/app"
