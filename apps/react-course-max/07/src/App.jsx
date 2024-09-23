@@ -3,12 +3,12 @@ import {useState} from "react";
 import Player from "./components/Player.jsx";
 import GameBoard from "./components/GameBoard.jsx";
 import Log from "./components/Log.jsx";
-import {WINNING_COMBINATIONS} from "./winning-combinations.js";
 import GameOver from "./components/GameOver.jsx";
+import {WINNING_COMBINATIONS} from "./winning-combinations.js";
 
 const PLAYERS = {
     X: 'Player 1',
-    0: 'Player 2',
+    O: 'Player 2',
 }
 
 const INITIAL_GAME_BOARD = [
@@ -22,7 +22,7 @@ function deriveActivePlayer(gameTurns) {
     let currentPlayer = 'X'
 
     if (gameTurns.length > 0 && gameTurns[0].player === 'X') {
-        currentPlayer = '0'
+        currentPlayer = 'O'
     }
 
     return currentPlayer;
@@ -58,6 +58,7 @@ function deriveWinner(gameBoard, players) {
 }
 
 function App() {
+
     const [players, setPlayers] = useState(PLAYERS)
     const [gameTurns, setGameTurns] = useState([])
 
@@ -70,11 +71,10 @@ function App() {
 
         setGameTurns(prevTurns => {
             const currentPlayer = deriveActivePlayer(prevTurns)
-            const updatedTurns = [
-                { square: { row: rowIndex, col: colIndex }, player: currentPlayer },
+            return [
+                {square: {row: rowIndex, col: colIndex}, player: currentPlayer},
                 ...prevTurns
             ]
-            return updatedTurns
         })
     }
 
@@ -96,7 +96,7 @@ function App() {
             <div id={"game-container"}>
                 <ol id={"players"} className={"highlight-player"}>
                     <Player initialName={PLAYERS.X} symbol={"X"} isActive={activePlayer === "X"} onChangeName={handlePlayerNameChange} />
-                    <Player initialName={PLAYERS["0"]} symbol={"0"} isActive={activePlayer === "0"}  onChangeName={handlePlayerNameChange} />
+                    <Player initialName={PLAYERS.O} symbol={"O"} isActive={activePlayer === "O"}  onChangeName={handlePlayerNameChange} />
                 </ol>
                 {(winner || hasDraw) && <GameOver winner={winner} onRestart={handleRestart} />}
                 <GameBoard
