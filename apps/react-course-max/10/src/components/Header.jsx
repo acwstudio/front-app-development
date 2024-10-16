@@ -21,7 +21,7 @@ export default function Header({cart, onUpdateCartItemQuantity}) {
             </>
         );
     }
-    console.log(modalActions)
+
     return (
         <>
             <CartModal
