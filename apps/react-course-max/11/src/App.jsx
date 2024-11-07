@@ -49,7 +49,7 @@ function App() {
         });
 
         const storedIds = JSON.parse(localStorage.getItem('selectedPlaces')) || [];
-        console.log(storedIds)
+
         if (storedIds.indexOf(id) === -1) {
             localStorage.setItem(
                 'selectedPlaces',
@@ -62,6 +62,7 @@ function App() {
         setPickedPlaces((prevPickedPlaces) =>
             prevPickedPlaces.filter((place) => place.id !== selectedPlace.current)
         );
+
         modal.current.close();
 
         const storedIds = JSON.parse(localStorage.getItem('selectedPlaces')) || [];
